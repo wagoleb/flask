@@ -11,6 +11,7 @@ def index():
   </head>
   <body>
     <h1>Hello, ''' + user['nickname'] + '''</h1>
+    <h2> '''+ 500*'OLE\n' +'''</h2>
   </body>
 </html>
 '''
