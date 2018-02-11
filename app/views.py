@@ -1,17 +1,10 @@
 from app import app
+from flask import render_template
 
 @app.route('/')
 @app.route('/index')
 def index():
-    user = {'nickname': 'Wojciech'}  # fake user
-    return '''
-<html>
-  <head>
-    <title>Home Page</title>
-  </head>
-  <body>
-    <h1>Hello, ''' + user['nickname'] + '''</h1>
-    <h2> '''+ 500*'OLE\n' +'''</h2>
-  </body>
-</html>
-'''
+    user = {'nickname': 'Wojo The Man'}  # fake user
+    return render_template('index.html',
+                           title='Home',
+                           user=user)
