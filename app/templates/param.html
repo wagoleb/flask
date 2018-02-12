@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <p>
+        Przekazany parametr to:</br>
+        {% if param %}
+            wartosc: {{ param }}
+        {% else %}
+            Nie podano nic
+        {% endif %}
+    </p>
+{% endblock %}

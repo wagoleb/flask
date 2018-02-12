@@ -15,3 +15,4 @@ class Testowy(Form):
     name = StringField('name', validators = [DataRequired(message = ErrorsMessages.dataRequired), Length(min=2, max=20)])
     email = StringField('email', validators = [DataRequired(message = ErrorsMessages.dataRequired), Email(message = ErrorsMessages.wrongEmail)])
     confirmEmail = StringField('confirmEmail', validators = [DataRequired(ErrorsMessages.dataRequired), EqualTo('email', ErrorsMessages.emailNotConfirmed)])
+

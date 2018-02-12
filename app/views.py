@@ -37,7 +37,6 @@ def login():
 @app.route('/test', methods=['GET', 'POST'])
 def testowy():
     form = Testowy()
-    print('{} - {}'.format(form.validate_on_submit(), form.name.data))
     if form.validate_on_submit():
         flash('Name: {}'.format(form.name.data))
         return redirect('/index')
@@ -47,3 +46,6 @@ def testowy():
 def load_user(id):
     return User.query.get(int(id))
 
+@app.route('/parametr/<name>')
+def param(name):
+    return render_template('param.html', title='Przekazanie prametru', param=name)
