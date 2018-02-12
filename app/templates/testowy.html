@@ -6,8 +6,20 @@
       {{ form.hidden_tag() }}
       <p>
           Please enter your name:<br>
-          {{ form.name(size=22) }}<br>
+          {{ form.name(size=35) }}<br>
           {% for error in form.name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}<br>
+
+          Enter your email:<br>
+          {{ form.email(size=35) }} <br>
+          {% for error in form.email.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}<br>
+
+          Confirm your email:<br>
+          {{ form.confirmEmail(size=35) }} <br>
+          {% for error in form.confirmEmail.errors %}
             <span style="color: red;">[{{ error }}]</span>
           {% endfor %}<br>
       </p>
