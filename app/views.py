@@ -37,6 +37,7 @@ def login():
 @app.route('/test', methods=['GET', 'POST'])
 def testowy():
     form = Testowy()
+    print('{} - {}'.format(form.validate_on_submit(), form.name.data))
     if form.validate_on_submit():
         flash('Name: {}'.format(form.name.data))
         return redirect('/index')

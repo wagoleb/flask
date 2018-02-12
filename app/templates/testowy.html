@@ -3,6 +3,7 @@
 
 {% block content %}
   <form action="" method="post" name="testowy">
+      {{ form.hidden_tag() }}
       <p>
           Please enter your name:<br>
           {{ form.name(size=22) }}<br>
