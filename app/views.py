@@ -1,4 +1,4 @@
-from app import app, db, lm, oid
+from app import app, db
 from flask import render_template, flash, redirect, session, url_for, request, g, url_for
 from flask_login import login_user, logout_user, current_user, login_required
 from .forms import LoginForm, Testowy, Login
@@ -42,9 +42,9 @@ def testowy():
         return redirect(url_for('index'))
     return render_template('testowy.html', title='Testing Form', form=form)
 
-@lm.user_loader
-def load_user(id):
-    return User.query.get(int(id))
+# @lm.user_loader
+# def load_user(id):
+#     return User.query.get(int(id))
 
 @app.route('/parametr/<name>')
 def param(name):
