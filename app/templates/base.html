@@ -4,10 +4,10 @@
   </head>
   <body>
     <div>Microblog:
-      <a href="/index">Home</a>
-      <a href="/login">Login</a>
-      <a href="/test">Testowy</a>
-      <a href="/log">Standard Login</a>
+      <a href="{{ url_for('index') }}">Home</a>
+      <a href="{{ url_for('login') }}">Login</a>
+      <a href="{{ url_for('testowy') }}">Testowy</a>
+      <a href="{{ url_for('log') }}">Standard Login</a>
     </div>
     <hr>
     {% with messages = get_flashed_messages() %}

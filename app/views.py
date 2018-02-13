@@ -1,5 +1,5 @@
 from app import app, db, lm, oid
-from flask import render_template, flash, redirect, session, url_for, request, g
+from flask import render_template, flash, redirect, session, url_for, request, g, url_for
 from flask_login import login_user, logout_user, current_user, login_required
 from .forms import LoginForm, Testowy, Login
 from .models import User
@@ -31,7 +31,7 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         flash('Login requested for OpenID="{}", remember_me={}'.format(form.openid.data, str(form.remember_me.data)))
-        return redirect('/index')
+        return redirect(url_for('index'))
     return render_template('login.html', title='Sign In', form=form, providers=app.config['OPENID_PROVIDERS'])
 
 @app.route('/test', methods=['GET', 'POST'])
@@ -39,7 +39,7 @@ def testowy():
     form = Testowy()
     if form.validate_on_submit():
         flash('Name: {}'.format(form.name.data))
-        return redirect('/index')
+        return redirect(url_for('index'))
     return render_template('testowy.html', title='Testing Form', form=form)
 
 @lm.user_loader
@@ -55,5 +55,5 @@ def log():
     form = Login()
     if form.validate_on_submit():
         flash('Username: {}, Password: {}, Remember Me: {}'.format(form.username.data, form.password.data, form.remember_me.data))
-        return redirect('/index')
+        return redirect(url_for('index'))
     return render_template('log.html', title='Standard login', form=form)
