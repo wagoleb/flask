@@ -7,6 +7,7 @@ from models import User
 
 @app.route('/')
 @app.route('/index')
+@login_required
 def index():
     user = {'nickname': 'Miguel'}  # fake user
 
