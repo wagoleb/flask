@@ -39,6 +39,7 @@ def login():
 
 
 @app.route('/test', methods=['GET', 'POST'])
+@login_required
 def testowy():
     form = Testowy()
     if form.validate_on_submit():
