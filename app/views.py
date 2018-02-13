@@ -42,10 +42,6 @@ def testowy():
         return redirect(url_for('index'))
     return render_template('testowy.html', title='Testing Form', form=form)
 
-# @lm.user_loader
-# def load_user(id):
-#     return User.query.get(int(id))
-
 @app.route('/parametr/<name>')
 def param(name):
     return render_template('param.html', title='Przekazanie prametru', param=name)
