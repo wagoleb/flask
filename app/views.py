@@ -64,3 +64,9 @@ def log():
         login_user(user, remember=form.remember_me.data)
         return redirect(url_for('index'))
     return render_template('log.html', title='Standard login', form=form)
+
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))

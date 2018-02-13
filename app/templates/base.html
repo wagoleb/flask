@@ -5,9 +5,13 @@
   <body>
     <div>Microblog:
       <a href="{{ url_for('index') }}">Home</a>
-      <a href="{{ url_for('login') }}">Login</a>
+      <a href="{{ url_for('login') }}">OpenID</a>
       <a href="{{ url_for('testowy') }}">Testowy</a>
-      <a href="{{ url_for('log') }}">Standard Login</a>
+      {% if current_user.is_anonymous %}
+        <a href="{{ url_for('log') }}">Login</a>
+      {% else %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+      {% endif %}
     </div>
     <hr>
     {% with messages = get_flashed_messages() %}
