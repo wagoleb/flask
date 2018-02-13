@@ -1,7 +1,7 @@
 from app import app, db, lm, oid
 from flask import render_template, flash, redirect, session, url_for, request, g
 from flask_login import login_user, logout_user, current_user, login_required
-from .forms import LoginForm, Testowy
+from .forms import LoginForm, Testowy, Login
 from .models import User
 
 @app.route('/')
@@ -49,3 +49,11 @@ def load_user(id):
 @app.route('/parametr/<name>')
 def param(name):
     return render_template('param.html', title='Przekazanie prametru', param=name)
+
+@app.route('/log', methods=['GET', 'POST'])
+def log():
+    form = Login()
+    if form.validate_on_submit():
+        flash('Username: {}, Password: {}, Remember Me: {}'.format(form.username.data, form.password.data, form.remember_me.data))
+        return redirect('/index')
+    return render_template('log.html', title='Standard login', form=form)

@@ -1,5 +1,5 @@
-from flask_wtf import Form
-from wtforms import StringField, BooleanField
+from flask_wtf import Form, FlaskForm
+from wtforms import StringField, BooleanField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 
 class ErrorsMessages():
@@ -16,3 +16,8 @@ class Testowy(Form):
     email = StringField('email', validators = [DataRequired(message = ErrorsMessages.dataRequired), Email(message = ErrorsMessages.wrongEmail)])
     confirmEmail = StringField('confirmEmail', validators = [DataRequired(ErrorsMessages.dataRequired), EqualTo('email', ErrorsMessages.emailNotConfirmed)])
 
+class Login(FlaskForm):
+    username = StringField('Username', validators = [DataRequired(message = ErrorsMessages.dataRequired)])
+    password = PasswordField('Password', validators = [DataRequired(message = ErrorsMessages.dataRequired)])
+    remember_me = BooleanField('Remember Me')
+    submit = SubmitField('Sign In')
