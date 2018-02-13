@@ -10,8 +10,6 @@ from werkzeug.urls import url_parse
 @app.route('/index')
 @login_required
 def index():
-    user = {'nickname': 'Miguel'}  # fake user
-
     posts = [  # fake array of posts
         {
             'author': {'nickname': 'John'},
@@ -27,7 +25,7 @@ def index():
         }
     ]
 
-    return render_template('index.html', title='Home', user=user, posts=posts)
+    return render_template('index.html', title='Home', posts=posts)
 
 
 @app.route('/login', methods=['GET', 'POST'])
