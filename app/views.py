@@ -3,6 +3,7 @@ from flask import render_template, flash, redirect, session, url_for, request, g
 from flask_login import login_user, logout_user, current_user, login_required
 from forms import LoginForm, Testowy, Login
 from models import User
+from werkzeug.urls import url_parse
 
 
 @app.route('/')
@@ -64,6 +65,9 @@ def log():
             flash('Invalid username or password')
             return redirect(url_for('log'))
         login_user(user, remember=form.remember_me.data)
+        next_page = request.args.get('next')
+        if not next_page or url_parse(next_page).netloc != '':
+            next_page = url_for('index')
         return redirect(url_for('index'))
     return render_template('log.html', title='Standard login', form=form)
 
