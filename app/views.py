@@ -4,6 +4,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 from forms import LoginForm, Testowy, Login
 from models import User
 
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -19,12 +20,13 @@ def index():
             'body': 'The Avengers movie was so cool!'
         },
         {
-            'author': {'nickname': 'Wojtek',},
+            'author': {'nickname': 'Wojtek'},
             'body': 'Pierwszy wpis od Wojtka'
         }
     ]
 
     return render_template('index.html', title='Home', user=user, posts=posts)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -34,6 +36,7 @@ def login():
         return redirect(url_for('index'))
     return render_template('login.html', title='Sign In', form=form, providers=app.config['OPENID_PROVIDERS'])
 
+
 @app.route('/test', methods=['GET', 'POST'])
 def testowy():
     form = Testowy()
@@ -42,9 +45,11 @@ def testowy():
         return redirect(url_for('index'))
     return render_template('testowy.html', title='Testing Form', form=form)
 
+
 @app.route('/parametr/<name>')
 def param(name):
     return render_template('param.html', title='Przekazanie prametru', param=name)
+
 
 @app.route('/log', methods=['GET', 'POST'])
 def log():
