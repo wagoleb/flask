@@ -66,7 +66,7 @@ def log():
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('index')
-        return redirect(url_for('index'))
+        return redirect(next_page)
     return render_template('log.html', title='Standard login', form=form)
 
 
