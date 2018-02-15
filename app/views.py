@@ -2,7 +2,7 @@ from app import app, db
 from flask import render_template, flash, redirect, session, url_for, request, g, url_for
 from flask_login import login_user, logout_user, current_user, login_required
 from forms import LoginForm, Testowy, Login, RegistrationForm
-from models import User
+from models import User, Post
 from werkzeug.urls import url_parse
 
 
@@ -10,21 +10,7 @@ from werkzeug.urls import url_parse
 @app.route('/index')
 @login_required
 def index():
-    posts = [  # fake array of posts
-        {
-            'author': {'nickname': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'nickname': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
-        },
-        {
-            'author': {'nickname': 'Wojtek'},
-            'body': 'Pierwszy wpis od Wojtka'
-        }
-    ]
-
+    posts = Post.query.all()
     return render_template('index.html', title='Home', posts=posts)
 
 
