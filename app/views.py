@@ -1,9 +1,12 @@
+import pytz
+
 from app import app, db
 from datetime import datetime
 from flask import render_template, flash, redirect, session, url_for, request, g, url_for
 from flask_login import login_user, logout_user, current_user, login_required
 from forms import LoginForm, Testowy, Login, RegistrationForm
 from models import User, Post
+from tzlocal import get_localzone
 from werkzeug.urls import url_parse
 
 
@@ -84,7 +87,12 @@ def register():
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
     posts = Post.query.filter_by(author=user).all()
-    return render_template('user.html', user=user, posts=posts)
+    if user.last_seen:
+        time = datetime.strftime(user.last_seen, "%Y-%m-%d %H:%M:%S")
+        local_timezone = get_localzone()
+        utc_time = datetime.strptime(time, "%Y-%m-%d %H:%M:%S")
+        local_time = datetime.strftime(utc_time.replace(tzinfo=pytz.utc).astimezone(local_timezone), "%Y-%m-%d %H:%M:%S")
+    return render_template('user.html', user=user, posts=posts, time=local_time)
 
 @app.before_request
 def before_request():
