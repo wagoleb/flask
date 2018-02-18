@@ -1,0 +1,18 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <table>
+        {% for record in employees %}
+            <tr>
+                <td>
+                    {{ record.first_name }}
+                </td>
+                <td>
+                    {{ record.last_name }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+  </body>
+</html>
