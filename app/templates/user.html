@@ -16,9 +16,7 @@
     </table>
     <hr>
     {% if posts %}
-        {% for post in posts %}
             {% include '_post.html' %}
-        {% endfor %}
     {% else %}
         <div><p>Brak postow</p></div>
     {% endif %}
