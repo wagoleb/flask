@@ -5,5 +5,5 @@ from flask import render_template
 @app.route('/')
 @app.route('/index')
 def index():
-    employees = session.query(Employees).all()
+    employees = session.query(Employees).filter(Employees.last_name.like('%Nan')).all()
     return render_template('index.html', employees=employees)

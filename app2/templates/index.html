@@ -1,15 +1,28 @@
 <html>
   <head>
+      <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}">
   </head>
   <body>
-    <table>
+    <table class="hovertable">
         {% for record in employees %}
             <tr>
+                <td>
+                    {{ record.emp_no }}
+                </td>
                 <td>
                     {{ record.first_name }}
                 </td>
                 <td>
                     {{ record.last_name }}
+                </td>
+                <td>
+                    {{ record.birth_date }}
+                </td>
+                <td>
+                    {{ record.gender }}
+                </td>
+                <td>
+                    {{ record.hire_date }}
                 </td>
             </tr>
         {% endfor %}

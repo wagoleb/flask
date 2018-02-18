@@ -6,6 +6,3 @@ Base = automap_base()
 Base.prepare(db, reflect=True)
 Employees = Base.classes.employees
 session = Session(db)
-
-
-
