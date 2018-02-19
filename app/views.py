@@ -103,12 +103,16 @@ def before_request():
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
-    app.logger.info('edit profile view')
+    app.logger.info('in edit profile view')
     form = EditProfileForm(current_user.username)
+    app.logger.info('submitting to form var: {}'.format(form))
     if form.validate_on_submit():
+        app.logger.info('form validation success')
         current_user.username = form.username.data
         current_user.about_me = form.about_me.data
+        app.logger.info('submitted: username :{} and about: {}'.format(current_user.username, current_user.about_me))
         db.session.commit()
+        app.logger.info('commiting db changes')
         flash('Your changes have been saved.')
         return redirect(url_for('user', username=current_user.username))
     elif request.method == 'GET':
