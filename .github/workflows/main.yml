@@ -1,0 +1,8 @@
+name: flake8
+run-name: Flake8 GitHub Actions
+on: [pull_request]
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - run: nox -s lint
