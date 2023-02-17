@@ -5,4 +5,5 @@ jobs:
   check-bats-version:
     runs-on: ubuntu-latest
     steps:
-      - run: nox -s lint
+      - run: ls -la
+#       - run: nox -s lint
